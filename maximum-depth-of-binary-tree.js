@@ -16,9 +16,7 @@ var maxDepth = function (root) {
     return 0;
   }
 
-  root.left = maxDepth(root.left);
-  root.right = maxDepth(root.right);
-  return;
+  return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
 };
 
 function TreeNode(val, left, right) {
