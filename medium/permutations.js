@@ -4,13 +4,21 @@
  */
 var permute = function (nums) {
   let result = [];
-
-  let index = 0;
-
-  let end = (nums.length - 1) * nums.length;
-
-  while (result.length !== end) {
-    let temp = [];
-    temp.push();
+  if (nums.length < 2) {
+    result.push([...nums]);
+    return result;
   }
+
+  for (let i = 0; i < nums.length; i++) {
+    let temp = [...nums];
+    temp.splice(i, 1);
+    const splitArr = permute(temp);
+    for (let split of splitArr) {
+      result.push([nums[i], ...split]);
+    }
+  }
+  return result;
 };
+
+// console.log(permute([5, 4, 6, 2]));
+console.log(permute([1, 2, 3]));
